@@ -1,10 +1,9 @@
-package com.cep.darkstar.pubsub.sub;
+package com.datastax.tickdata.consumer;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import com.datastax.pubsub.sub.SubscribeTopic;
 
-
-public class SimpleTopicConsumer {
+public class SimpleTickConsumer {
 	static Logger logger = Logger.getLogger("com.cep.darkstar.offramp.SimpleTopicConsumer");
     public static void main(String[] args) {
         try {
@@ -13,18 +12,16 @@ public class SimpleTopicConsumer {
                                  "                                          [host\n" +
                                  "                                          [port\n" +
                                  "where\n" +
-                                 " - topic defaults to \"#\",\n" +
+                                 " - topic defaults to \"TickData\",\n" +
                                  " - host to \"localhost\", and\n" +
                                  " - port to 5672\n");
                 System.exit(1);
             }
-    		// initialize log4j
-    		PropertyConfigurator.configure("log4j.properties");
-    		
+    		    		
         	long end = 0;
         	long begin = 0;
         	int i = 0;
-        	String topicPattern = (args.length > 0) ? args[0] : "#";
+        	String topicPattern = (args.length > 0) ? args[0] : "TickData";
             String hostName = (args.length > 1) ? args[1] : "localhost";
             int portNumber = (args.length > 2) ? Integer.parseInt(args[1]) : 5672;
 
