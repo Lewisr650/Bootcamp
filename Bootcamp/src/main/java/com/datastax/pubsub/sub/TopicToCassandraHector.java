@@ -33,7 +33,7 @@ import com.datastax.commons.EventObject;
 import com.eaio.uuid.UUID;
 import com.rabbitmq.client.ShutdownSignalException;
 
-public class TopicToCassandra {
+public class TopicToCassandraHector {
 	static Logger logger = Logger.getLogger("com.cep.darkstar.offramp.TopicToCassandra");
 
 	public static class Publish implements Runnable {
@@ -91,8 +91,6 @@ public class TopicToCassandra {
 			this.queue = queue;
 			this.mutator = HFactory.createMutator(ko, bfs);
 			this.firm = firm;
-			//TimedCommit timedCommit = new TimedCommit(mutator);
-			//timedCommit.run();
 		}
 
 		// do the actual insertions
@@ -246,29 +244,6 @@ public class TopicToCassandra {
 			logger.error(ex.getMessage(), ex);
 			cluster.getConnectionManager().shutdown();
 			System.exit(1);
-		}
-	}
-
-	// consistency level
-	private static class MyConsistencyLevel implements ConsistencyLevelPolicy {
-		@Override
-		public HConsistencyLevel get(OperationType op, String arg1) {
-			switch(op) {
-				case READ: return HConsistencyLevel.ONE;
-				case WRITE: return HConsistencyLevel.ANY;
-			default:
-				return HConsistencyLevel.ONE;
-			}
-		}
-
-		@Override
-		public HConsistencyLevel get(OperationType op) {
-			switch(op) {
-				case READ: return HConsistencyLevel.ONE;
-				case WRITE: return HConsistencyLevel.ANY;
-			default:
-				return HConsistencyLevel.ONE;
-			}
 		}
 	}
 }
