@@ -1,7 +1,3 @@
-/**
- * Cloud Event Processing, Inc.
- * 
- */
 package com.cep.darkstar.pubsub.sub;
 
 import java.io.IOException;
