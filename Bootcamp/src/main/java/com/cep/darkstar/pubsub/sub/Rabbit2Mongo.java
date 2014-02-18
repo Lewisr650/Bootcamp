@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.json.JSONException;
 
-import com.cep.commons.EventObject;
+import com.datastax.commons.EventObject;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -37,6 +37,7 @@ public class Rabbit2Mongo {
 		Producer(BlockingQueue<BasicDBObject> q) {eventQueue = q;}
 
 		public void run() {
+			EventObject event;
 			try {
 				long begin = System.currentTimeMillis();
 				long end = 0;
@@ -63,10 +64,9 @@ public class Rabbit2Mongo {
 					Envelope envelope = delivery.getEnvelope();
 					String body = new String(delivery.getBody());
 					channel.basicAck(envelope.getDeliveryTag(), false);
-					@SuppressWarnings("unused")
-					EventObject event = new EventObject(body);
-//					BasicDBObject dbObject = event.toMongoDB();
-//					eventQueue.put(dbObject);
+					event = new EventObject(body);
+					BasicDBObject dbObject = event.toMongoDB();
+					eventQueue.put(dbObject);
 					i=i+1;
 					if ((i % 50000) == 0) {
 						end = System.currentTimeMillis();
