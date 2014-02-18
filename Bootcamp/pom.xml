@@ -58,5 +58,14 @@
 			<version>3.2</version>
 			<name>UUID</name>
 		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>casbah_2.9.2</artifactId>
+			<packaging>pom</packaging>
+			<description>casbah</description>
+			<version>2.6.5</version>
+			<name>casbah</name>
+
+		</dependency>
 	</dependencies>
 </project>
