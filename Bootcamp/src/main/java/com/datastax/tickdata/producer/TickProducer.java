@@ -5,10 +5,11 @@ package com.datastax.tickdata.producer;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.json.JSONException;
 
-import com.cep.commons.EventObject;
 import com.cep.darkstar.pubsub.pub.PublishTopic;
+import com.datastax.commons.EventObject;
 import com.datastax.demo.utils.PropertyHelper;
 import com.datastax.tickdata.DataLoader;
 import com.datastax.tickdata.producer.TickGenerator.TickValue;

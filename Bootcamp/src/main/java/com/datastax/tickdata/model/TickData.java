@@ -1,8 +1,10 @@
 package com.datastax.tickdata.model;
 
 import java.io.IOException;
+
 import org.json.JSONException;
-import com.cep.commons.EventObject;
+
+import com.datastax.commons.EventObject;
 
 public class TickData {
 	private EventObject tick = new EventObject();
