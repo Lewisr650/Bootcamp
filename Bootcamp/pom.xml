@@ -48,8 +48,15 @@
 		</dependency>
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
-		<artifactId>amqp-client</artifactId>
-<version>3.2.3</version>
+			<artifactId>amqp-client</artifactId>
+			<version>3.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.eaio.uuid</groupId>
+			<artifactId>uuid</artifactId>
+			<packaging>jar</packaging>
+			<version>3.2</version>
+			<name>UUID</name>
 		</dependency>
 	</dependencies>
 </project>
