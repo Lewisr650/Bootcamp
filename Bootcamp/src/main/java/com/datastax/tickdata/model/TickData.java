@@ -1,7 +1,5 @@
 package com.datastax.tickdata.model;
 
-import java.io.IOException;
-
 import org.json.JSONException;
 
 import com.datastax.commons.EventObject;
@@ -14,6 +12,8 @@ public class TickData {
 			tick.setEventName("Tick");
 			tick.put("Symbol", aTick.symbol);
 			tick.put("Price", aTick.price);
+			tick.put("Shares",  aTick.shares);
+			tick.put("SeqNo", aTick.seqNo);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -21,7 +21,9 @@ public class TickData {
 
 	public static class Builder {
 		String symbol;
-		Double price;
+		Double price = 0.0;
+		long shares = 0;
+		long seqNo = 0;
 		
 		public Builder symbol(String symbol) {
 			this.symbol = symbol;
@@ -30,6 +32,16 @@ public class TickData {
 
 		public Builder price(Double price) {
 			this.price = price;
+			return this;
+		}
+		
+		public Builder shares(long shares) {
+			this.shares = shares;
+			return this;
+		}
+		
+		public Builder seqNo(long seqNo) {
+			this.seqNo = seqNo;
 			return this;
 		}
 
